@@ -1,0 +1,29 @@
+CPP_TEMPLATE="cpptemplate.cc"
+
+# create cp template for cpp
+cccp() {
+    local cur_dir="$(pwd)"
+    cp ~/Documents/cp/$CPP_TEMPLATE $cur_dir/$1
+}
+
+# this function obtains the most recently
+# modified file and then compiles it.
+# it then re-obtains the most recently modified
+# file (which is the compiled binary called a.out)
+# and then runs it
+# this is for competitive programming so we
+# don't have to keep retyping the name of the
+# file that we just modified
+rcp() {
+    local cpp_file=$(ls -Art | tail -n 1)
+    echo "Compiling ${cpp_file}..."
+    g++ -std=c++17 -g -Wall "${cpp_file}"
+    echo "Running compiled ${result}..."
+    local binary=$(ls -Art | tail -n 1)
+    ./"${binary}"
+}
+
+function gcap() {
+	git commit -m "$1"
+	git push
+}
